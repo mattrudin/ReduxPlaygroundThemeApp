@@ -19,4 +19,57 @@ Tags: *reactjs*, *react-native*, *react-redux*
 ## 2. Lessons learned
 ### react-native
 #### TouchableHighlight
-[@React-native documentation](https://facebook.github.io/react-native/docs/touchablehighlight)  
+[@React-native documentation](https://facebook.github.io/react-native/docs/touchablehighlight)    
+### redux
+#### workflow
+types --> actions --> Component
+types --> reducers --> store  
+```javascript
+//types.js
+const CHANGE_PRIMARY_COLOR = 'CHANGE_PRIMARY_COLOR';
+
+export { CHANGE_PRIMARY_COLOR };
+
+//actions.js
+import { CHANGE_PRIMARY_COLOR } from './types';
+
+const changePrimaryColor = (color) => ({
+	type: CHANGE_PRIMARY_COLOR,
+	color
+});
+
+export { changePrimaryColor };
+
+//reducers.js
+import { combineReducers } from 'redux';
+import { CHANGE_PRIMARY_COLOR } from './types';
+
+const initialState = {
+	primaryColor: '#ebebeb'
+};
+
+const theme = (state = initialState, action) => {
+	switch (action.type) {
+		case CHANGE_PRIMARY_COLOR:
+			return {
+				...state,
+				primaryColor: action.color
+			};
+		default:
+			return state;
+	}
+};
+
+export default combineReducers({
+	theme
+});
+
+//Theme.js
+import { changePrimaryColor } from '../components/actions';
+
+handleThemeChange = (color) => {
+	//Output to store
+	this.props.dispatch(changePrimaryColor(color));
+};
+
+```
