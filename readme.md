@@ -22,7 +22,7 @@ Tags: *reactjs*, *react-native*, *react-redux*
 [@React-native documentation](https://facebook.github.io/react-native/docs/touchablehighlight)    
 ### redux
 #### workflow
-types --> actions --> Component
+types --> actions --> Component  
 types --> reducers --> store  
 ```javascript
 //types.js
